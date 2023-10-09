@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
-export const white = writable('#ffffff');
-export const black = writable('#000000');
+export const white = writable('#fdfdfd');
+export const black = writable('#070707');
 
 white.subscribe((value) => {
   setRootCSSVariable('--fg', value);

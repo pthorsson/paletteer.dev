@@ -4,6 +4,8 @@
   export let value: number;
   export let step = 1;
 
+  export let noPadding = false;
+
   const thumbSize = 26;
 
   $: fillWidth = ((value - min) / (max - min)) * 100;
@@ -11,6 +13,7 @@
 
 <div
   class="wrapper"
+  class:no-padding={noPadding}
   style="
     --progress: {fillWidth}%;
     --thumb-size: {thumbSize}px;
@@ -51,6 +54,10 @@
     position: relative;
   }
 
+  .no-padding.wrapper {
+    margin: 0px calc((var(--thumb-size) * -1) / 2);
+  }
+
   .bar {
     pointer-events: none;
     position: absolute;
@@ -58,11 +65,14 @@
     left: 0px;
     height: 10px;
     width: 100%;
-    border: 1px solid var(--fg);
-    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     overflow: hidden;
     background: var(--bar-color, var(--bg));
+  }
+
+  .no-padding .bar {
+    margin: 0px calc(var(--thumb-size) / 2);
+    width: calc(100% - var(--thumb-size));
   }
 
   .fill {
@@ -94,7 +104,7 @@
     pointer-events: none;
     border-radius: var(--thumb-size);
     background: var(--thumb-color, var(--fg));
-    border: 2px solid var(--fg);
+    border: 2px solid var(--thumb-border, var(--fg));
     width: var(--thumb-size);
     height: var(--thumb-size);
     box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);

@@ -313,6 +313,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/color-convert@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@types/color-convert@npm:2.0.1"
+  dependencies:
+    "@types/color-name": "*"
+  checksum: 52843d9206661d80957d15330d71f2eb8ebda4aaba72236d2d200e588ac806005a25e25f96393d81c9e61632a8316070d1136d2ff74f0a9350cf6d97291a2550
+  languageName: node
+  linkType: hard
+
+"@types/color-name@npm:*":
+  version: 1.1.1
+  resolution: "@types/color-name@npm:1.1.1"
+  checksum: b71fcad728cc68abcba1d405742134410c8f8eb3c2ef18113b047afca158ad23a4f2c229bcf71a38f4a818dead375c45b20db121d0e69259c2d81e97a740daa6
+  languageName: node
+  linkType: hard
+
 "@types/estree@npm:*, @types/estree@npm:^1.0.0, @types/estree@npm:^1.0.1":
   version: 1.0.2
   resolution: "@types/estree@npm:1.0.2"
@@ -324,6 +340,13 @@ __metadata:
   version: 2.0.7
   resolution: "@types/pug@npm:2.0.7"
   checksum: b335f32361ea75bc276ba5cbe3d2eb6d5861b94b04ddc54168a4b5c01233bd4668da886d9e59b6c07f32f537b8229502603bfb983c7c8a82fa86dc1cd1b886a0
+  languageName: node
+  linkType: hard
+
+"@types/uuid@npm:^9.0.5":
+  version: 9.0.5
+  resolution: "@types/uuid@npm:9.0.5"
+  checksum: 7577940949619768303c0bf0a7cc235fac3cfae1c0bb4a2e85bfb87b2eb1024955ab446f775394d259442cd769b663b6ce43c39bdfc955d946bf833804ddb421
   languageName: node
   linkType: hard
 
@@ -1484,10 +1507,14 @@ __metadata:
   dependencies:
     "@sveltejs/vite-plugin-svelte": ^2.4.2
     "@tsconfig/svelte": ^5.0.0
+    "@types/color-convert": ^2.0.1
+    "@types/uuid": ^9.0.5
+    color-convert: ^2.0.1
     svelte: ^4.0.5
     svelte-check: ^3.4.6
     tslib: ^2.6.0
     typescript: ^5.0.2
+    uuid: ^9.0.1
     vite: ^4.4.5
   languageName: unknown
   linkType: soft
@@ -2031,6 +2058,15 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "uuid@npm:9.0.1"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
   languageName: node
   linkType: hard
 

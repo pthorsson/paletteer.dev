@@ -159,7 +159,6 @@
 
   .result {
     color: white;
-    font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
     text-shadow: 1px 1px 0px black;
     font-weight: bolder;

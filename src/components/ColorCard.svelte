@@ -32,7 +32,6 @@
 
   .info {
     display: flex;
-    font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     flex-direction: row;
     justify-content: space-between;

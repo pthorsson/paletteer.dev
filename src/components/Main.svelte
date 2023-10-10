@@ -24,13 +24,14 @@
   main {
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
     align-items: center;
+    padding: var(--base-4) var(--base-2);
     gap: 32px;
-    padding: 16px 32px;
+    max-width: var(--max-width);
   }
 
   section {
-    max-width: 1000px;
     width: 100%;
   }
 

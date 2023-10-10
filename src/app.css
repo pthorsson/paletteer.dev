@@ -7,6 +7,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --component-bg: color-mix(in srgb, var(--bg), var(--fg) 10%);
+  --component-border-radius: 8px;
 }
 
 *,
@@ -23,7 +26,8 @@ body {
 }
 
 #app {
-  /* display: grid; */
-  /* grid-template-rows: 40px 1fr; */
+  display: grid;
   height: 100vh;
+  /* grid-template-columns: 1fr; */
+  grid-template-rows: 40px 1fr 40px;
 }

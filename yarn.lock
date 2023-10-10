@@ -299,6 +299,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tabler/icons-svelte@npm:^2.38.0":
+  version: 2.38.0
+  resolution: "@tabler/icons-svelte@npm:2.38.0"
+  dependencies:
+    "@tabler/icons": 2.38.0
+  peerDependencies:
+    svelte: ">=3 <5"
+  checksum: 6d53a9f9b24aa490dafd89b9ddd09b803853f2255c2a7de9708627b445f81d43e94b68d8d7ea17d7579ca88f5327e63ac3fe1f1dc0927942623885f65fd0c303
+  languageName: node
+  linkType: hard
+
+"@tabler/icons@npm:2.38.0":
+  version: 2.38.0
+  resolution: "@tabler/icons@npm:2.38.0"
+  checksum: 030af0ed999103334a9d823aae7069a308b2fffb79b89ac6b7a46ba27eed4f9527b07c77c961c688234808ba93bc1e7b7c401dfff3e386cf342e426754ceb096
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -1506,6 +1524,7 @@ __metadata:
   resolution: "palette-maker@workspace:."
   dependencies:
     "@sveltejs/vite-plugin-svelte": ^2.4.2
+    "@tabler/icons-svelte": ^2.38.0
     "@tsconfig/svelte": ^5.0.0
     "@types/color-convert": ^2.0.1
     "@types/uuid": ^9.0.5

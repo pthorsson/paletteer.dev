@@ -1,11 +1,14 @@
 <script lang="ts">
 </script>
 
-<footer>made with löve by @pthorsson</footer>
+<footer>footer</footer>
 
 <style>
   footer {
+    display: flex;
     color: var(--fg);
+    justify-content: center;
+    align-items: center;
     background-color: var(--bg);
     border-top: 1px solid var(--fg);
   }

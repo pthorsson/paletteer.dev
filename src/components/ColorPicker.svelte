@@ -5,11 +5,6 @@
   import convert from 'color-convert';
   import Slider from './Slider.svelte';
 
-  export let minWhiteness = 0;
-  export let maxWhiteness = 100;
-  export let minBlackness = 0;
-  export let maxBlackness = 100;
-
   /**
    * HEX value.
    */
@@ -126,17 +121,17 @@
   "
 >
   <div class="result">
-    H: {hue}°
+    <!-- H: {hue}°
     <br />
     W: {whiteness.toFixed(0)}%
     <br />
     B: {blackness.toFixed(0)}%
     <br />
-    {value}
+    {value} -->
   </div>
   <div class="hue" {id} bind:this={hueBoard}>
-    <div class="saturation" />
-    <div class="lightness" />
+    <div class="whiteness" />
+    <div class="blackness" />
   </div>
   <div class="slider">
     <Slider
@@ -156,15 +151,10 @@
 <style>
   .wrapper {
     -webkit-user-callout: none;
-    min-width: 400px;
-    max-width: 100%;
+    width: 100%;
     display: grid;
-    background-color: rgba(255, 255, 255, 0.1);
     grid-template-columns: 1fr 70%;
-    padding: 24px 24px 16px 24px;
-    border-radius: 16px;
     row-gap: 16px;
-    margin-top: 32px;
   }
 
   .result {
@@ -195,14 +185,14 @@
     pointer-events: none;
   }
 
-  .saturation {
+  .whiteness {
     pointer-events: none;
     position: absolute;
     inset: 0;
     background: linear-gradient(to right, white, transparent);
   }
 
-  .lightness {
+  .blackness {
     pointer-events: none;
     position: absolute;
     inset: 0;

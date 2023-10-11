@@ -120,18 +120,10 @@
     --color: hwb(var(--hue) var(--whiteness) var(--blackness));
   "
 >
-  <div class="result">
-    <!-- H: {hue}°
-    <br />
-    W: {whiteness.toFixed(0)}%
-    <br />
-    B: {blackness.toFixed(0)}%
-    <br />
-    {value} -->
-  </div>
   <div class="hue" {id} bind:this={hueBoard}>
     <div class="whiteness" />
     <div class="blackness" />
+    <div class="aim" />
   </div>
   <div class="slider">
     <Slider
@@ -152,55 +144,46 @@
   .wrapper {
     -webkit-user-callout: none;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 70%;
-    row-gap: 16px;
-  }
-
-  .result {
-    color: white;
-    font-size: 14px;
-    text-shadow: 1px 1px 0px black;
-    font-weight: bolder;
-    padding: 4px;
-    line-height: 1;
-
-    /* user-select: none; */
-    aspect-ratio: 1;
-    background-color: var(--color);
-    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sub-base-3);
   }
 
   .hue {
+    aspect-ratio: 2 / 1;
     -webkit-touch-callout: none; /* Safari */
     -webkit-user-select: none; /* Chrome */
     position: relative;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
+    align-self: stretch;
     background: hwb(var(--hue) 0% 0%);
     touch-action: pan-x;
   }
 
-  .hue * {
+  .hue > * {
+    position: absolute;
     pointer-events: none;
   }
 
   .whiteness {
-    pointer-events: none;
-    position: absolute;
     inset: 0;
-    background: linear-gradient(to right, white, transparent);
+    background: linear-gradient(
+      to right,
+      color-mix(in srgb, transparent, white 100%),
+      color-mix(in srgb, transparent, white 0%)
+    );
   }
 
   .blackness {
-    pointer-events: none;
-    position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent, black);
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, transparent, black 100%),
+      color-mix(in srgb, transparent, black 0%)
+    );
   }
 
-  .hue::after {
-    position: absolute;
-    pointer-events: none;
+  .aim {
     left: calc(var(--pos-x) - 13px);
     top: calc(var(--pos-y) - 13px);
     content: '';

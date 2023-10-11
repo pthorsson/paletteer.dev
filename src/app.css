@@ -45,3 +45,9 @@ body {
   align-items: center;
   height: 100vh;
 }
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}

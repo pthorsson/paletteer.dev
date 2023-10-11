@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import { setRootCSSVariable } from '../lib/setRootCSSVariable';
 
-export const MIN_SHADES = 9;
+export const MIN_SHADES = 11;
 export const MAX_SHADES = 15;
 export const SHADES_STEP = 2;
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { white, black } from '../stores/colors';
-  import ColorSample from './ColorSample.svelte';
+  import { white, black } from '$stores/colors';
+  import ColorSample from '$components/ColorSample.svelte';
 
   const shades = new Array(9).fill(0).map((_, i) => i / 10);
 </script>

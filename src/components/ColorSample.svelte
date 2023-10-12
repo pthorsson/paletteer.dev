@@ -1,6 +1,6 @@
 <script lang="ts">
   import { IconEdit } from '@tabler/icons-svelte';
-  import ColorPicker from './ColorPicker.svelte';
+  import ColorPicker from '$components/ColorPicker.svelte';
 
   export let tone: number;
   export let hex: string;

@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { v4 as uuid } from 'uuid';
-  import { hwbFullHue } from '../lib/color-utils';
   import convert from 'color-convert';
-  import Slider from './Slider.svelte';
+  import { hwbFullHue } from '$lib/color-utils';
+  import Slider from '$components/Slider.svelte';
 
   /**
    * HEX value.
@@ -153,6 +153,7 @@
     aspect-ratio: 2 / 1;
     -webkit-touch-callout: none; /* Safari */
     -webkit-user-select: none; /* Chrome */
+    user-select: none; /* Chrome */
     position: relative;
     flex: 1 1 auto;
     align-self: stretch;

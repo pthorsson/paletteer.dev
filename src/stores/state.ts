@@ -1,5 +1,5 @@
-import { makeFaviconData } from '../lib/makeFaviconData';
 import { writable } from 'svelte/store';
+import { makeFaviconData } from '$lib/makeFaviconData';
 import { black, white } from './colors';
 
 export const menuItem = writable<string | null>(null);

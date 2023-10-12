@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { setRootCSSVariable } from '../lib/setRootCSSVariable';
+import { setRootCSSVariable } from '$lib/setRootCSSVariable';
 
 export const MIN_SHADES = 11;
 export const MAX_SHADES = 15;

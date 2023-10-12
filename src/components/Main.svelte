@@ -1,5 +1,5 @@
 <script lang="ts">
-  import KeyColorRange from './KeyColorRange.svelte';
+  import KeyColorRange from '$components/KeyColorRange.svelte';
 </script>
 
 <main>

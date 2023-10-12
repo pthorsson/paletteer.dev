@@ -5,7 +5,12 @@
   import Header from './components/Header.svelte';
   import Main from './components/Main.svelte';
   import Footer from './components/Footer.svelte';
+  import { favicon } from './stores/state';
 </script>
+
+<svelte:head>
+  <link rel="icon" href={$favicon} />
+</svelte:head>
 
 <Header />
 <Main />

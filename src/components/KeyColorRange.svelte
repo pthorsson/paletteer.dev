@@ -9,6 +9,7 @@
   <ColorSample
     tone={0}
     bind:hex={$white}
+    colorPickerPosition="left"
     editable
     --color="var(--fg)"
     --color-fg="var(--bg)"
@@ -16,7 +17,7 @@
   {#each shades as _, i}
     <div class="shade">
       <ColorSample
-        tone={(i + 1) * 100}
+        tone={(i + 1) * 10}
         hex="#000000"
         --color="color-mix(in srgb, var(--fg), var(--bg) {(i + 1) * 10}%)"
       />
@@ -26,6 +27,7 @@
     tone={100}
     bind:hex={$black}
     editable
+    colorPickerPosition="right"
     --color="var(--bg)"
     --color-fg="var(--fg)"
   />
@@ -55,16 +57,16 @@
       margin-right: 0;
     }
 
-    :global(.shade .color.color) {
+    :global(.shade .color-sample.color-sample) {
       border-radius: 0px;
     }
 
-    :global(.shade:nth-child(2) .color.color) {
+    :global(.shade:nth-child(2) .color-sample.color-sample) {
       border-top-left-radius: var(--base-1);
       border-bottom-left-radius: var(--base-1);
     }
 
-    :global(.shade:nth-last-child(2) .color.color) {
+    :global(.shade:nth-last-child(2) .color-sample.color-sample) {
       border-top-right-radius: var(--base-1);
       border-bottom-right-radius: var(--base-1);
     }

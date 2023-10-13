@@ -46,7 +46,7 @@
     flex: 1 1 auto;
     align-items: center;
     padding: var(--base-4) var(--base-2);
-    gap: 32px;
+    gap: var(--base-2);
     max-width: var(--max-width);
     width: 100%;
   }

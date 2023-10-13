@@ -17,6 +17,7 @@
   header {
     position: sticky;
     top: var(--base-2);
+    z-index: 200;
     flex: 0 0 auto;
     display: flex;
     -webkit-backdrop-filter: blur(5px);

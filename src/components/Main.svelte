@@ -25,6 +25,12 @@
     width: 100%;
   }
 
+  @media (max-width: 1000px) {
+    main {
+      padding: var(--base-2) var(--base-2);
+    }
+  }
+
   section {
     width: 100%;
   }

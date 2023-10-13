@@ -21,6 +21,7 @@
   data-value={value}
 >
   <input
+    class="input"
     type="range"
     {min}
     {max}
@@ -37,7 +38,7 @@
 </div>
 
 <style>
-  input {
+  .input {
     position: relative;
     display: block;
     width: 100%;

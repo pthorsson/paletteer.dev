@@ -1,11 +1,15 @@
 <script lang="ts">
+  import { ICON_STROKE } from '$lib/constants';
+  import { IconDownload, IconUpload } from '@tabler/icons-svelte';
 </script>
 
 <header>
   <a href="/" class="action logo">paletteer.dev</a>
   <div class="actions">
-    <button class="action">action 1</button>
-    <button class="action">action 2</button>
+    <button class="action">
+      <span>export</span>
+      <IconUpload stroke={ICON_STROKE} />
+    </button>
   </div>
 </header>
 
@@ -15,7 +19,8 @@
     top: var(--base-2);
     flex: 0 0 auto;
     display: flex;
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     color: var(--fg);
     justify-content: space-between;
     align-items: center;
@@ -37,7 +42,8 @@
     display: flex;
     cursor: pointer;
     align-items: center;
-    font-weight: 500;
+    gap: var(--base-1);
+    font-weight: 400;
     padding: 0;
     margin: 0;
     border: 0;
@@ -52,5 +58,16 @@
 
   .action:hover {
     background-color: var(--component-2);
+  }
+
+  .logo {
+    font-weight: 700;
+  }
+
+  @media (max-width: 1000px) {
+    header {
+      border-radius: 0px;
+      top: 0px;
+    }
   }
 </style>

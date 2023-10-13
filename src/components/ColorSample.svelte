@@ -1,7 +1,7 @@
 <script lang="ts">
   import { afterUpdate } from 'svelte';
   import { fly } from 'svelte/transition';
-  import { IconEdit } from '@tabler/icons-svelte';
+  import { IconEdit, IconX } from '@tabler/icons-svelte';
   import { v4 as uuid } from 'uuid';
   import ColorPicker from '$components/ColorPicker.svelte';
   import { ICON_STROKE } from '$lib/constants';
@@ -41,10 +41,15 @@
     <button
       id="color-sample-{id}"
       class="color-sample"
+      class:editing
       on:click={() => (editing = !editing)}
     >
-      <IconEdit size={24} stroke={ICON_STROKE} />
-      <span class="edit-label">edit</span>
+      {#if !editing}
+        <IconEdit size={24} stroke={ICON_STROKE} />
+        <span class="edit-label">edit</span>
+      {:else}
+        <IconX size={24} stroke={ICON_STROKE} />
+      {/if}
     </button>
   {:else}
     <div class="color-sample" />
@@ -93,6 +98,10 @@
     box-shadow: 0px 0px 0px 2px var(--bg), 0px 0px 0px 4px var(--fg);
   }
 
+  button.color-sample.editing {
+    box-shadow: 0px 0px 0px 2px var(--bg), 0px 0px 0px 4px var(--fg);
+  }
+
   .edit-label {
     line-height: 24px;
     opacity: 0;
@@ -123,6 +132,7 @@
 
   .color-picker {
     position: absolute;
+    z-index: 100;
     top: calc(100% + 15px);
     width: 400px;
     max-width: calc(100vw - var(--base-4));
@@ -144,7 +154,7 @@
 
   .color-picker.center {
     left: 50%;
-    margin-left: min(-200px, -50vw);
+    margin-left: max(-200px, calc(-50vw + var(--base-2)));
   }
 
   .color-picker.center::before {

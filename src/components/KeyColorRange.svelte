@@ -5,7 +5,7 @@
   const shades = new Array(9).fill(0).map((_, i) => i / 10);
 </script>
 
-<div class="list">
+<div class="key-colors">
   <ColorSample
     tone={0}
     bind:hex={$white}
@@ -34,14 +34,14 @@
 </div>
 
 <style>
-  .list {
+  .key-colors {
     display: grid;
     gap: var(--base-1);
     grid-template-columns: repeat(11, 1fr);
   }
 
   @media (max-width: 1000px) {
-    .list {
+    .key-colors {
       grid-template-columns: 80px repeat(9, 1fr) 80px;
     }
 
@@ -57,21 +57,21 @@
       margin-right: 0;
     }
 
-    :global(.shade .color-sample.color-sample) {
+    :global(.key-colors .shade .color-sample) {
       border-radius: 0px;
     }
 
-    :global(.shade:nth-child(2) .color-sample.color-sample) {
+    :global(.key-colors .shade:nth-child(2) .color-sample) {
       border-top-left-radius: var(--base-1);
       border-bottom-left-radius: var(--base-1);
     }
 
-    :global(.shade:nth-last-child(2) .color-sample.color-sample) {
+    :global(.key-colors .shade:nth-last-child(2) .color-sample) {
       border-top-right-radius: var(--base-1);
       border-bottom-right-radius: var(--base-1);
     }
 
-    :global(.shade .info.info) {
+    :global(.key-colors .shade .info.info) {
       display: none;
     }
   }

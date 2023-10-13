@@ -1,5 +1,25 @@
 <script lang="ts">
   import KeyColorRange from '$components/KeyColorRange.svelte';
+  import FunctionColorRange from './FunctionColorRange.svelte';
+
+  const colors = [
+    {
+      name: 'Info',
+      value: '#2971dc',
+    },
+    {
+      name: 'Success',
+      value: '#47a972',
+    },
+    {
+      name: 'Error',
+      value: '#d73951',
+    },
+    {
+      name: 'Warning',
+      value: '#e6b44a',
+    },
+  ];
 </script>
 
 <main>
@@ -11,6 +31,12 @@
     </p>
     <KeyColorRange />
   </section>
+  {#each colors as { name, value }}
+    <section>
+      <h2>{name}</h2>
+      <FunctionColorRange {value} />
+    </section>
+  {/each}
 </main>
 
 <style>

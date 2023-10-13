@@ -77,12 +77,12 @@
     function handleTouchStart(e: TouchEvent) {
       if (e.target instanceof Element && e.target.id === id) {
         hwbChangeStart();
-        hwbPosUpdate(e.touches[0].clientX, e.touches[0].clientY);
+        hwbPosUpdate(e.touches[0].clientX, e.touches[0].clientY - 50);
       }
     }
 
     function handleTouchMove(e: TouchEvent) {
-      hwbPosUpdate(e.touches[0].clientX, e.touches[0].clientY);
+      hwbPosUpdate(e.touches[0].clientX, e.touches[0].clientY - 50);
     }
 
     function handleTouchEnd() {

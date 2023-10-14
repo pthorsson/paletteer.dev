@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { white, black } from '$stores/colors';
   import ColorSample from '$components/ColorSample.svelte';
-  import { srgbToHex } from '$lib/color-utils';
+  import { getSampleColors } from '$lib/color-utils';
   import { onMount } from 'svelte';
 
   let wrapperEl: HTMLDivElement;
@@ -10,33 +11,17 @@
   const tints = new Array(5).fill(0).map((_, i) => i / 10);
   const shades = new Array(5).fill(0).map((_, i) => i / 10);
 
-  const tintColors: string[] = [];
-  const shadeColors: string[] = [];
+  let tintColors: string[] = [];
+  let shadeColors: string[] = [];
 
-  function getColors(_: string) {
-    if (!wrapperEl) return;
+  const updateColors = () => {
+    tintColors = getSampleColors(wrapperEl, '.tint .color-sample');
+    shadeColors = getSampleColors(wrapperEl, '.shade .color-sample');
+  };
 
-    const tintElements = wrapperEl.querySelectorAll('.tint .color-sample');
-    const shadeElements = wrapperEl.querySelectorAll('.shade .color-sample');
+  onMount(() => void updateColors());
 
-    tintElements.forEach((el, i) => {
-      const color = getComputedStyle(el).backgroundColor;
-      tintColors[i] = srgbToHex(color);
-    });
-
-    shadeElements.forEach((el, i) => {
-      const color = getComputedStyle(el).backgroundColor;
-      shadeColors[i] = srgbToHex(color);
-    });
-  }
-
-  onMount(() => {
-    getColors(value);
-  });
-
-  $: {
-    getColors(value);
-  }
+  $: if (value || $white || $black) updateColors();
 </script>
 
 <div class="function-colors" bind:this={wrapperEl}>

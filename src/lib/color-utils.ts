@@ -50,3 +50,16 @@ export const hslSaturationGradient = (hslDeg: number) => `linear-gradient(
   hsl(${hslDeg}, 0%, 50%),
   hsl(${hslDeg}, 100%, 50%)
 )`;
+
+export function getSampleColors(wrapper: HTMLDivElement, selector: string) {
+  if (!wrapper) return [];
+
+  const colors: string[] = [];
+
+  wrapper.querySelectorAll(selector).forEach((el) => {
+    const color = getComputedStyle(el).backgroundColor;
+    colors.push(srgbToHex(color));
+  });
+
+  return colors;
+}

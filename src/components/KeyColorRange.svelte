@@ -1,11 +1,25 @@
 <script lang="ts">
   import { white, black } from '$stores/colors';
   import ColorSample from '$components/ColorSample.svelte';
+  import { getSampleColors, srgbToHex } from '$lib/color-utils';
+  import { onMount } from 'svelte';
+
+  let wrapperEl: HTMLDivElement;
 
   const shades = new Array(9).fill(0).map((_, i) => i / 10);
+
+  let shadeColors: string[] = [];
+
+  const updateColors = () => {
+    shadeColors = getSampleColors(wrapperEl, '.shade .color-sample');
+  };
+
+  onMount(() => void updateColors());
+
+  $: if ($white || $black) updateColors();
 </script>
 
-<div class="key-colors">
+<div class="key-colors" bind:this={wrapperEl}>
   <ColorSample
     tone={0}
     bind:hex={$white}
@@ -18,7 +32,7 @@
     <div class="shade">
       <ColorSample
         tone={(i + 1) * 10}
-        hex="#000000"
+        hex={shadeColors[i] || '—'}
         --color="color-mix(in srgb, var(--fg), var(--bg) {(i + 1) * 10}%)"
       />
     </div>

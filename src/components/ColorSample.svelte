@@ -8,7 +8,7 @@
 
   const id = uuid();
 
-  export let tone: number;
+  export let tone: number | string;
   export let hex: string;
   export let editable = false;
   export let colorPickerPosition: 'left' | 'right' | 'center' = 'center';

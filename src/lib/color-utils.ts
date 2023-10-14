@@ -6,8 +6,18 @@ export function hexToRgb(hex: string): [number, number, number] {
   return [r, g, b];
 }
 
-export function rgbToHex(r: number, g: number, b: number): string {
-  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+export function srgbToHex(srgb: string) {
+  const [r, g, b] = srgb
+    .replace('color(srgb ', '')
+    .replace(')', '')
+    .split(' ')
+    .map((v) =>
+      Math.round(255 * Number(v))
+        .toString(16)
+        .padStart(2, '0')
+    );
+
+  return `#${r}${g}${b}`;
 }
 
 export const hwbFullHue = (

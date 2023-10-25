@@ -8,8 +8,8 @@
 
   const id = uuid();
 
-  export let tone: number | string;
-  export let hex: string;
+  export let toneLabel: number | string;
+  export let hexLabel: string;
   export let editable = false;
   export let colorPickerPosition: 'left' | 'right' | 'center' = 'center';
 
@@ -40,6 +40,8 @@
   {#if editable}
     <button
       id="color-sample-{id}"
+      data-name={toneLabel}
+      data-hex={toneLabel}
       class="color-sample"
       class:editing
       on:click={() => (editing = !editing)}
@@ -55,8 +57,8 @@
     <div class="color-sample" />
   {/if}
   <div class="info">
-    <span class="tone">{tone}</span>
-    <span class="hex">{hex}</span>
+    <span class="tone">{toneLabel}</span>
+    <span class="hex">{hexLabel}</span>
   </div>
   {#if editable && editing}
     <div
@@ -67,7 +69,7 @@
       class:right={colorPickerPosition === 'right'}
       class:center={colorPickerPosition === 'center'}
     >
-      <ColorPicker bind:value={hex} />
+      <ColorPicker bind:value={hexLabel} />
     </div>
   {/if}
 </div>

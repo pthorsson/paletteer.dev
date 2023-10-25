@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { white, black } from '$stores/colors';
-  import ColorSample from '$components/ColorSample.svelte';
-  import { getSampleColors, srgbToHex } from '$lib/color-utils';
   import { onMount } from 'svelte';
+  import ColorSample from '$components/ColorSample.svelte';
+  import { colorPalette, keyColors } from '$stores/colors';
+  import { getSampleColors } from '$lib/color-utils';
 
   let wrapperEl: HTMLDivElement;
 
@@ -12,17 +12,29 @@
 
   const updateColors = () => {
     shadeColors = getSampleColors(wrapperEl, '.shade .color-sample');
+
+    colorPalette.update((colors) => ({
+      ...colors,
+      key: [
+        ['0', $keyColors.white],
+        ...shadeColors.reduce<[string, string][]>(
+          (acc, color, i) => [...acc, [`${(i + 1) * 10}`, color]],
+          []
+        ),
+        ['100', $keyColors.black],
+      ],
+    }));
   };
 
   onMount(() => void updateColors());
 
-  $: if ($white || $black) updateColors();
+  $: if ($keyColors) updateColors();
 </script>
 
 <div class="key-colors" bind:this={wrapperEl}>
   <ColorSample
-    tone={0}
-    bind:hex={$white}
+    toneLabel={0}
+    bind:hexLabel={$keyColors.white}
     colorPickerPosition="left"
     editable
     --color="var(--fg)"
@@ -31,15 +43,15 @@
   {#each shades as _, i}
     <div class="shade">
       <ColorSample
-        tone={(i + 1) * 10}
-        hex={shadeColors[i] || '—'}
+        toneLabel={(i + 1) * 10}
+        hexLabel={shadeColors[i] || '—'}
         --color="color-mix(in srgb, var(--fg), var(--bg) {(i + 1) * 10}%)"
       />
     </div>
   {/each}
   <ColorSample
-    tone={100}
-    bind:hex={$black}
+    toneLabel={100}
+    bind:hexLabel={$keyColors.black}
     editable
     colorPickerPosition="right"
     --color="var(--bg)"

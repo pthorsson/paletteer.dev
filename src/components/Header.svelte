@@ -1,12 +1,13 @@
 <script lang="ts">
   import { ICON_STROKE } from '$lib/constants';
-  import { IconDownload, IconUpload } from '@tabler/icons-svelte';
+  import { IconUpload } from '@tabler/icons-svelte';
+  import { showExportModal } from '$stores/state';
 </script>
 
 <header>
   <a href="/" class="action logo">paletteer.dev</a>
   <div class="actions">
-    <button class="action">
+    <button class="action" on:click={() => void ($showExportModal = true)}>
       <span>export</span>
       <IconUpload stroke={ICON_STROKE} />
     </button>

@@ -43,11 +43,6 @@ export const colorPalette = writable<{
   [name: string]: [string, string][];
 }>({});
 
-colorPalette.subscribe((palette) => {
-  console.clear();
-  console.log(JSON.stringify(palette, null, 2));
-});
-
 keyColors.subscribe(({ white, black }) => {
   favicon.set(makeFaviconData({ white, black }));
   setRootCSSVariable('--fg', white);

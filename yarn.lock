@@ -1013,6 +1013,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"highlight.js@npm:^11.9.0":
+  version: 11.9.0
+  resolution: "highlight.js@npm:11.9.0"
+  checksum: 4043d31c5de9d27d13387d9a9e5e1939557254b7b85f0fab85d9cae0e420e131a3456ebf6148552020a1d8a216d671d583f2433d6c4de6179b8a66487a8325cb
+  languageName: node
+  linkType: hard
+
 "http-cache-semantics@npm:^4.1.1":
   version: 4.1.1
   resolution: "http-cache-semantics@npm:4.1.1"
@@ -1537,6 +1544,7 @@ __metadata:
     "@types/color-convert": ^2.0.1
     "@types/uuid": ^9.0.5
     color-convert: ^2.0.1
+    highlight.js: ^11.9.0
     svelte: ^4.0.5
     svelte-check: ^3.4.6
     tslib: ^2.6.0

@@ -25,7 +25,10 @@ ${Object.entries(data)
   .join('\n')}
 }`.trim();
 
-  return hljs.highlight(code, { language: 'css' }).value;
+  return {
+    code,
+    highlighted: hljs.highlight(code, { language: 'css' }).value,
+  };
 }
 
 /**
@@ -42,7 +45,10 @@ export function formatScss(data: PaletteData) {
       .join('\n')}
   `.trim();
 
-  return hljs.highlight(code, { language: 'scss' }).value;
+  return {
+    code,
+    highlighted: hljs.highlight(code, { language: 'scss' }).value,
+  };
 }
 
 /**
@@ -60,7 +66,10 @@ ${colors.map(([key, value]) => `    '${key}': '${value}',`).join('\n')}
   .join('\n')}
 };`.trim();
 
-  return hljs.highlight(code, { language: 'js' }).value;
+  return {
+    code,
+    highlighted: hljs.highlight(code, { language: 'js' }).value,
+  };
 }
 
 /**
@@ -87,5 +96,8 @@ ${colors
   },
 };`.trim();
 
-  return hljs.highlight(code, { language: 'js' }).value;
+  return {
+    code,
+    highlighted: hljs.highlight(code, { language: 'js' }).value,
+  };
 }

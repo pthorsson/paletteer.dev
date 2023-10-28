@@ -18,32 +18,42 @@
   type LangId = (typeof languages)[number]['id'];
 
   let selectedLanguage: LangId = 'css';
+
   let code = '';
+  let highlighted = '';
 
   let contentRef: HTMLDivElement;
+  let highlightedRef: HTMLPreElement;
+
+  let codeWidth = 0;
+  let codeHeight = 0;
 
   function setLanguage(landId: LangId) {
     selectedLanguage = landId;
     contentRef.scrollTo(0, 0);
 
+    let formatted: { code: string; highlighted: string };
+
     switch (landId) {
       case 'css':
-        code = formatCss($colorPalette);
+        formatted = formatCss($colorPalette);
         break;
       case 'scss':
-        code = formatScss($colorPalette);
+        formatted = formatScss($colorPalette);
         break;
       case 'js':
-        code = formatJs($colorPalette);
+        formatted = formatJs($colorPalette);
         break;
       case 'tw':
-        code = formatTw($colorPalette);
+        formatted = formatTw($colorPalette);
         break;
     }
+
+    code = formatted.code;
+    highlighted = formatted.highlighted;
   }
 
   function copyToClipboard() {
-    const code = document.getElementById('code')?.innerText || '';
     navigator.clipboard.writeText(code);
   }
 
@@ -51,6 +61,19 @@
     setTimeout(() => {
       setLanguage('css');
     });
+  });
+
+  onMount(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      codeWidth = highlightedRef.scrollWidth + 16;
+      codeHeight = highlightedRef.scrollHeight;
+    });
+
+    resizeObserver.observe(highlightedRef);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
   });
 </script>
 
@@ -74,9 +97,16 @@
         {/each}
       </div>
     </div>
-    <div class="content" bind:this={contentRef}>
-      <!-- Make textarea with highlight overlay? -->
-      <pre id="code">{@html code}</pre>
+    <div
+      class="content"
+      bind:this={contentRef}
+      style="
+        --w: {codeWidth}px;
+        --h: {codeHeight}px;
+      "
+    >
+      <pre bind:this={highlightedRef}>{@html highlighted}</pre>
+      <textarea value={code} readonly />
     </div>
     <button class="action copy" on:click={() => void copyToClipboard()}>
       Copy
@@ -154,17 +184,43 @@
   }
 
   .content {
+    position: relative;
     background-color: var(--bg);
     flex: 1 1 auto;
     border-radius: var(--sub-base-1);
     border-top: 1px solid var(--component-2);
-    padding: var(--base-1) var(--base-2);
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 14px;
     line-height: 1.5;
   }
 
-  .content pre {
-    margin: var(--sub-base-1) 0px;
+  .content pre,
+  .content textarea {
+    padding: var(--base-2);
+    margin: 0;
+    white-space: pre-wrap;
+    border: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  .content textarea {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    outline: 0;
+    height: var(--h);
+    width: var(--w);
+    overflow: hidden;
+    background-color: transparent;
+    color: transparent;
+  }
+
+  .content textarea::selection {
+    background-color: var(--fg);
+    color: var(--bg);
   }
 
   .action {

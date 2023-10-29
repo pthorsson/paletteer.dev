@@ -78,7 +78,11 @@
 </script>
 
 <div class="wrapper" transition:fade={{ duration: 150 }}>
-  <div class="backdrop" on:click={() => void ($showExportModal = false)} />
+  <div
+    class="backdrop"
+    role="none"
+    on:click={() => void ($showExportModal = false)}
+  />
   <div class="container" transition:scale={{ start: 0.95, duration: 150 }}>
     <button
       class="action close"

@@ -76,7 +76,7 @@ ${colors.map(([key, value]) => `    '${key}': '${value}',`).join('\n')}
  * Tailwind
  */
 export function formatTw(data: PaletteData) {
-  const code = `{
+  const code = `const tailwindConfig = {
   theme: {
     colors: {
 ${Object.entries(data)

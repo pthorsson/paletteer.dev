@@ -13,12 +13,11 @@
   const [initHue = 0, initWhiteness = 50, initBlackness = 50] =
     convert.hex.hwb(value);
 
-  console.log(initHue, initWhiteness, initBlackness);
-
   const id = uuid();
 
   let hueBoard: HTMLDivElement;
   let dragging = false;
+  let initiated = false;
 
   const boardBoundary = { x1: 0, x2: 0, y1: 0, y2: 0 };
 
@@ -30,7 +29,9 @@
   $: blackness = y;
 
   $: {
-    value = '#' + convert.hwb.hex([hue, whiteness, blackness]).toLowerCase();
+    if (initiated) {
+      value = '#' + convert.hwb.hex([hue, whiteness, blackness]).toLowerCase();
+    }
   }
 
   function hwbPosUpdate(clientX: number, clientY: number) {
@@ -109,6 +110,7 @@
 
 <div
   class="wrapper"
+  role="none"
   style="
     --pos-x: {x.toFixed(3)}%;
     --pos-y: {y.toFixed(3)}%;
@@ -119,6 +121,8 @@
 
     --color: hwb(var(--hue) var(--whiteness) var(--blackness));
   "
+  on:mousedown={() => (initiated = true)}
+  on:touchstart={() => (initiated = true)}
 >
   <div class="hue" {id} bind:this={hueBoard}>
     <div class="whiteness" />

@@ -216,6 +216,7 @@
     overflow: hidden;
     background-color: transparent;
     color: transparent;
+    resize: none;
   }
 
   .content textarea::selection {

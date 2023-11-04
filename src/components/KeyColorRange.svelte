@@ -7,7 +7,7 @@
   {#each $palette.key as [tone, value]}
     {#if tone === '0'}
       <ColorSample
-        toneLabel={0}
+        toneLabel="0"
         bind:value={$colors._white}
         editable
         colorPickerPosition="left"
@@ -16,7 +16,7 @@
       />
     {:else if tone === '100'}
       <ColorSample
-        toneLabel={0}
+        toneLabel="100"
         bind:value={$colors._black}
         editable
         colorPickerPosition="right"

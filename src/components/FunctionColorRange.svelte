@@ -9,7 +9,7 @@
   {#each $palette[id] as [tone, value]}
     {#if tone === '0'}
       <ColorSample
-        toneLabel={0}
+        toneLabel="0"
         bind:value={$colors[id]}
         editable
         colorPickerPosition="center"

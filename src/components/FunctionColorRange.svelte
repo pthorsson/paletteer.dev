@@ -1,71 +1,26 @@
 <script lang="ts">
-  import { colorPalette, keyColors } from '$stores/colors';
+  import { colors, palette } from '$stores/colors';
   import ColorSample from '$components/ColorSample.svelte';
-  import { getSampleColors } from '$lib/color-utils';
-  import { onMount } from 'svelte';
 
-  let wrapperEl: HTMLDivElement;
-
-  export let name: string;
-  export let value: string;
-
-  const tints = new Array(5).fill(0).map((_, i) => i / 10);
-  const shades = new Array(5).fill(0).map((_, i) => i / 10);
-
-  let tintColors: string[] = [];
-  let shadeColors: string[] = [];
-
-  const updateColors = () => {
-    tintColors = getSampleColors(wrapperEl, '.tint .color-sample');
-    shadeColors = getSampleColors(wrapperEl, '.shade .color-sample');
-
-    colorPalette.update((colors) => ({
-      ...colors,
-      [name]: [
-        ...tintColors.reduce<[string, string][]>(
-          (acc, color, i) => [...acc, ['w' + (5 - i) * 20, color]],
-          []
-        ),
-        ['0', value],
-        ...shadeColors.reduce<[string, string][]>(
-          (acc, color, i) => [...acc, ['b' + (i + 1) * 20, color]],
-          []
-        ),
-      ],
-    }));
-  };
-
-  onMount(() => void updateColors());
-
-  $: if (value || $keyColors) updateColors();
+  export let id: string;
 </script>
 
-<div class="function-colors" bind:this={wrapperEl}>
-  {#each tints as _, i}
-    <div class="color tint">
+<div class="function-colors">
+  {#each $palette[id] as [tone, value]}
+    {#if tone === '0'}
       <ColorSample
-        toneLabel={'w' + (5 - i) * 20}
-        hexLabel={tintColors[i] || '—'}
-        --color="color-mix(in srgb, {value}, var(--fg) {(5 - i) * 15}%)"
+        toneLabel={0}
+        bind:value={$colors[id]}
+        editable
+        colorPickerPosition="center"
+        --color={value}
+        --color-fg="var(--fg)"
       />
-    </div>
-  {/each}
-  <ColorSample
-    toneLabel={0}
-    bind:hexLabel={value}
-    editable
-    colorPickerPosition="center"
-    --color={value}
-    --color-fg="var(--fg)"
-  />
-  {#each shades as _, i}
-    <div class="color shade">
-      <ColorSample
-        toneLabel={'b' + (i + 1) * 20}
-        hexLabel={shadeColors[i] || '—'}
-        --color="color-mix(in srgb, {value}, var(--bg) {(i + 2) * 15}%)"
-      />
-    </div>
+    {:else}
+      <div class="color">
+        <ColorSample toneLabel={tone} value={value || '—'} --color={value} />
+      </div>
+    {/if}
   {/each}
 </div>
 

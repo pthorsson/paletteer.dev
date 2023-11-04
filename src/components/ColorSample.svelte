@@ -9,7 +9,7 @@
   const id = uuid();
 
   export let toneLabel: number | string;
-  export let hexLabel: string;
+  export let value: string;
   export let editable = false;
   export let colorPickerPosition: 'left' | 'right' | 'center' = 'center';
 
@@ -58,7 +58,7 @@
   {/if}
   <div class="info">
     <span class="tone">{toneLabel}</span>
-    <span class="hex">{hexLabel}</span>
+    <span class="hex">{value}</span>
   </div>
   {#if editable && editing}
     <div
@@ -69,7 +69,7 @@
       class:right={colorPickerPosition === 'right'}
       class:center={colorPickerPosition === 'center'}
     >
-      <ColorPicker bind:value={hexLabel} />
+      <ColorPicker bind:value />
     </div>
   {/if}
 </div>

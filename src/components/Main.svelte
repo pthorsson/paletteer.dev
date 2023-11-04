@@ -1,7 +1,10 @@
 <script lang="ts">
+  import capitalize from 'lodash/capitalize';
   import KeyColorRange from '$components/KeyColorRange.svelte';
-  import FunctionColorRange from './FunctionColorRange.svelte';
-  import { functionalColors } from '$stores/colors';
+  import FunctionColorRange from '$components/FunctionColorRange.svelte';
+  import { colors } from '$stores/colors';
+
+  const colorIds = Object.keys($colors).filter((id) => id.at(0) !== '_');
 </script>
 
 <main>
@@ -13,10 +16,10 @@
     </p>
     <KeyColorRange />
   </section>
-  {#each $functionalColors as { name, value }}
+  {#each colorIds as id}
     <section>
-      <h2>{name}</h2>
-      <FunctionColorRange {value} name={name.toLowerCase()} />
+      <h2>{capitalize(id)}</h2>
+      <FunctionColorRange {id} />
     </section>
   {/each}
 </main>

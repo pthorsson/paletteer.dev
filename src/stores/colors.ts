@@ -1,50 +1,44 @@
 import { writable } from 'svelte/store';
-import { setRootCSSVariable } from '$lib/setRootCSSVariable';
-import { favicon } from './state';
-import { makeFaviconData } from '$lib/makeFaviconData';
+import { parseLocationHash } from '$lib/parseLocationHash';
+import { getKeyColorRange } from '$lib/getKeyColorRange';
+import { getFunctionalColorRange } from '$lib/getFunctionalColorRange';
+import { makePalette } from '$lib/makePalette';
 
-type KeyColors = {
-  white: string;
-  black: string;
+export type Colors = { [name: string]: string };
+export type Palette = {
+  [name: string]: (readonly [string, string | null])[];
 };
 
-type FunctionalColor = {
-  name: string;
-  value: string;
+const hashColors = parseLocationHash(location.hash);
+
+const initialColors: Colors = {
+  _white: hashColors.white || '#ececff',
+  _black: hashColors.black || '#0b0921',
+  primary: hashColors.primary || '#6fb2d5',
+  info: hashColors.info || '#2971dc',
+  success: hashColors.success || '#47a972',
+  error: hashColors.error || '#d73951',
+  warning: hashColors.warning || '#e6b44a',
 };
 
-// All colors in one state?
+const initialPalette = makePalette(initialColors);
 
-export const keyColors = writable<KeyColors>({
-  white: '#fffef5',
-  black: '#0f0b17',
-});
+export const colors = writable<Colors>(initialColors);
+export const palette = writable<Palette>(initialPalette);
 
-export const functionalColors = writable<FunctionalColor[]>([
-  {
-    name: 'Info',
-    value: '#2971dc',
-  },
-  {
-    name: 'Success',
-    value: '#47a972',
-  },
-  {
-    name: 'Error',
-    value: '#d73951',
-  },
-  {
-    name: 'Warning',
-    value: '#e6b44a',
-  },
-]);
+// Update palette whenever colors updates.
+colors.subscribe((colors) => {
+  const { _white, _black, ...functionalColors } = colors;
 
-export const colorPalette = writable<{
-  [name: string]: [string, string][];
-}>({});
+  const updatedPalette: Palette = {
+    key: getKeyColorRange(_white, _black),
+  };
 
-keyColors.subscribe(({ white, black }) => {
-  favicon.set(makeFaviconData({ white, black }));
-  setRootCSSVariable('--fg', white);
-  setRootCSSVariable('--bg', black);
+  for (const [name, value] of Object.entries(functionalColors)) {
+    const colorRange = getFunctionalColorRange(value, _white, _black);
+
+    updatedPalette[name] = colorRange;
+  }
+
+  palette.set(updatedPalette);
 });

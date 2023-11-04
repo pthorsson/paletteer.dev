@@ -3,7 +3,7 @@
   import { fade, scale } from 'svelte/transition';
   import { IconClipboardCopy, IconX } from '@tabler/icons-svelte';
   import { ICON_STROKE } from '$lib/constants';
-  import { colorPalette } from '$stores/colors';
+  import { palette } from '$stores/colors';
   import { showExportModal } from '$stores/state';
 
   import { formatCss, formatScss, formatJs, formatTw } from '$lib/languages';
@@ -36,16 +36,16 @@
 
     switch (landId) {
       case 'css':
-        formatted = formatCss($colorPalette);
+        formatted = formatCss($palette);
         break;
       case 'scss':
-        formatted = formatScss($colorPalette);
+        formatted = formatScss($palette);
         break;
       case 'js':
-        formatted = formatJs($colorPalette);
+        formatted = formatJs($palette);
         break;
       case 'tw':
-        formatted = formatTw($colorPalette);
+        formatted = formatTw($palette);
         break;
     }
 

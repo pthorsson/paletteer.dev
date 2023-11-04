@@ -3,18 +3,17 @@ import cssLang from 'highlight.js/lib/languages/css';
 import scssLang from 'highlight.js/lib/languages/scss';
 import jsLang from 'highlight.js/lib/languages/javascript';
 import tsLang from 'highlight.js/lib/languages/typescript';
+import type { Palette } from '$stores/colors';
 
 hljs.registerLanguage('css', cssLang);
 hljs.registerLanguage('scss', scssLang);
 hljs.registerLanguage('js', jsLang);
 hljs.registerLanguage('ts', tsLang);
 
-type PaletteData = { [name: string]: [string, string][] };
-
 /**
  * CSS
  */
-export function formatCss(data: PaletteData) {
+export function formatCss(data: Palette) {
   const code = `:root {
 ${Object.entries(data)
   .map(([name, colors]) =>
@@ -34,7 +33,7 @@ ${Object.entries(data)
 /**
  * SCSS
  */
-export function formatScss(data: PaletteData) {
+export function formatScss(data: Palette) {
   const code = `
     ${Object.entries(data)
       .map(([name, colors]) =>
@@ -54,7 +53,7 @@ export function formatScss(data: PaletteData) {
 /**
  * JavaScript
  */
-export function formatJs(data: PaletteData) {
+export function formatJs(data: Palette) {
   const code = `const colors = {
 ${Object.entries(data)
   .map(
@@ -75,7 +74,7 @@ ${colors.map(([key, value]) => `    '${key}': '${value}',`).join('\n')}
 /**
  * Tailwind
  */
-export function formatTw(data: PaletteData) {
+export function formatTw(data: Palette) {
   const code = `const tailwindConfig = {
   theme: {
     colors: {

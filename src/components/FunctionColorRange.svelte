@@ -49,11 +49,13 @@
     }
 
     .color:nth-child(1) {
+      margin-left: 0;
       border-top-left-radius: var(--base-1);
       border-bottom-left-radius: var(--base-1);
     }
 
     .color:nth-last-child(1) {
+      margin-right: 0;
       border-top-right-radius: var(--base-1);
       border-bottom-right-radius: var(--base-1);
     }

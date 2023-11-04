@@ -2,10 +2,14 @@
   import { ICON_STROKE } from '$lib/constants';
   import { IconUpload } from '@tabler/icons-svelte';
   import { showExportModal } from '$stores/state';
+  import Logo from './Logo.svelte';
 </script>
 
 <header>
-  <a href="/" class="action logo">paletteer.dev</a>
+  <a href="/" class="action logo">
+    <Logo />
+    <span>paletteer.dev</span>
+  </a>
   <div class="actions">
     <button class="action" on:click={() => void ($showExportModal = true)}>
       <span>export</span>
@@ -51,7 +55,7 @@
     border: 0;
     height: 100%;
     color: var(--fg);
-    padding: 0px var(--sub-base-3);
+    padding: var(--sub-base-2) var(--sub-base-3);
     text-decoration: none;
     font-size: 16px;
     border-radius: var(--sub-base-1);

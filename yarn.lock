@@ -1556,9 +1556,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"palette-maker@workspace:.":
+"paletteer@workspace:.":
   version: 0.0.0-use.local
-  resolution: "palette-maker@workspace:."
+  resolution: "paletteer@workspace:."
   dependencies:
     "@fontsource/jetbrains-mono": ^5.0.15
     "@sveltejs/vite-plugin-svelte": ^2.4.2

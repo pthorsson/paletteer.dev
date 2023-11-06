@@ -1,7 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { fade, scale } from 'svelte/transition';
-  import { IconClipboardCopy, IconX } from '@tabler/icons-svelte';
+  import IconClipboardCopy from '@tabler/icons-svelte/dist/svelte/icons/IconClipboardCopy.svelte';
+  import IconX from '@tabler/icons-svelte/dist/svelte/icons/IconX.svelte';
   import { ICON_STROKE } from '$lib/constants';
   import { palette } from '$stores/colors';
   import { showExportModal } from '$stores/state';

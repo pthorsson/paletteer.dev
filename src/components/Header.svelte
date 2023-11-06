@@ -1,6 +1,7 @@
 <script lang="ts">
   import { ICON_STROKE } from '$lib/constants';
-  import { IconUpload, IconRefresh } from '@tabler/icons-svelte';
+  import IconRefresh from '@tabler/icons-svelte/dist/svelte/icons/IconRefresh.svelte';
+  import IconUpload from '@tabler/icons-svelte/dist/svelte/icons/IconUpload.svelte';
   import { showExportModal } from '$stores/state';
   import Logo from './Logo.svelte';
 </script>

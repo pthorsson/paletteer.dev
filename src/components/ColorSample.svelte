@@ -1,7 +1,8 @@
 <script lang="ts">
   import { afterUpdate } from 'svelte';
   import { fly } from 'svelte/transition';
-  import { IconEdit, IconX } from '@tabler/icons-svelte';
+  import IconX from '@tabler/icons-svelte/dist/svelte/icons/IconX.svelte';
+  import IconEdit from '@tabler/icons-svelte/dist/svelte/icons/IconEdit.svelte';
   import { v4 as uuid } from 'uuid';
   import ColorPicker from '$components/ColorPicker.svelte';
   import { ICON_STROKE } from '$lib/constants';

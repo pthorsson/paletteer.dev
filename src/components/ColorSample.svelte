@@ -13,6 +13,17 @@
   export let editable = false;
   export let colorPickerPosition: 'left' | 'right' | 'center' = 'center';
 
+  let editing = false;
+  let showOnTop = false;
+  let wrapperElement: HTMLDivElement;
+
+  $: if (editable && editing) {
+    const { height, y } = wrapperElement.getBoundingClientRect();
+    const windowsHeight = window.innerHeight;
+
+    showOnTop = y + height + 280 > windowsHeight;
+  }
+
   afterUpdate(() => {
     if (editable) {
       function outsideHandler(e: MouseEvent | TouchEvent) {
@@ -32,11 +43,9 @@
       };
     }
   });
-
-  let editing = false;
 </script>
 
-<div class="wrapper">
+<div class="wrapper" bind:this={wrapperElement}>
   {#if editable}
     <button
       id="color-sample-{id}"
@@ -62,9 +71,11 @@
   </div>
   {#if editable && editing}
     <div
-      transition:fly={{ duration: 300, y: -10 }}
+      transition:fly={{ duration: 300, y: showOnTop ? 10 : -10 }}
       id="color-picker-{id}"
       class="color-picker"
+      class:top={showOnTop}
+      class:bottom={!showOnTop}
       class:left={colorPickerPosition === 'left'}
       class:right={colorPickerPosition === 'right'}
       class:center={colorPickerPosition === 'center'}
@@ -133,25 +144,42 @@
   }
 
   .color-picker {
+    --bg: var(--component-2);
     position: absolute;
     z-index: 100;
-    top: calc(100% + 15px);
     width: 400px;
     max-width: calc(100vw - var(--base-4));
     padding: var(--base-3) var(--base-3) var(--sub-base-3) var(--base-3);
     border-radius: var(--base-2);
-    background-color: var(--component-1);
+    background-color: var(--bg);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
   }
 
   .color-picker::before {
     content: '';
     position: absolute;
-    top: -10px;
     width: 0;
     height: 0;
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
-    border-bottom: 15px solid var(--component-1);
+  }
+
+  .color-picker.bottom {
+    top: calc(100% + 20px);
+  }
+
+  .color-picker.top {
+    bottom: calc(100% + 20px);
+  }
+
+  .color-picker.bottom::before {
+    top: -10px;
+    border-bottom: 15px solid var(--bg);
+  }
+
+  .color-picker.top::before {
+    bottom: -10px;
+    border-top: 15px solid var(--bg);
   }
 
   .color-picker.center {
@@ -161,7 +189,7 @@
 
   .color-picker.center::before {
     left: 50%;
-    margin-left: -7.5px;
+    margin-left: -15px;
   }
 
   .color-picker.left {

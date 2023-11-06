@@ -1,6 +1,6 @@
 <script lang="ts">
   import { ICON_STROKE } from '$lib/constants';
-  import { IconUpload } from '@tabler/icons-svelte';
+  import { IconUpload, IconRefresh } from '@tabler/icons-svelte';
   import { showExportModal } from '$stores/state';
   import Logo from './Logo.svelte';
 </script>
@@ -11,6 +11,10 @@
     <span>paletteer.dev</span>
   </a>
   <div class="actions">
+    <button class="action" on:click={() => void location.replace('/')}>
+      <span>reset</span>
+      <IconRefresh stroke={ICON_STROKE} />
+    </button>
     <button class="action" on:click={() => void ($showExportModal = true)}>
       <span>export</span>
       <IconUpload stroke={ICON_STROKE} />

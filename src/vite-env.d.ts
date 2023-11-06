@@ -1,4 +1,4 @@
 /// <reference types="svelte" />
 /// <reference types="vite/client" />
 
-declare var VERSION: string;
+declare var __APP_VERSION__: string;

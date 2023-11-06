@@ -19,7 +19,7 @@
     </div>
     <div>
       <!-- svelte-ignore missing-declaration -->
-      {VERSION}
+      {__APP_VERSION__}
     </div>
   </div>
 </footer>

@@ -5,18 +5,18 @@
 
 <div class="key-colors">
   {#each $palette.key as [tone, value]}
-    {#if tone === '0'}
+    {#if tone === '100'}
       <ColorSample
-        toneLabel="0"
+        toneLabel="100"
         bind:value={$colors._white}
         editable
         colorPickerPosition="left"
         --color={value || ''}
         --color-fg="var(--bg)"
       />
-    {:else if tone === '100'}
+    {:else if tone === '0'}
       <ColorSample
-        toneLabel="100"
+        toneLabel="0"
         bind:value={$colors._black}
         editable
         colorPickerPosition="right"

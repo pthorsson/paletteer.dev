@@ -1,8 +1,8 @@
 <script lang="ts">
   import { afterUpdate } from 'svelte';
   import { fly } from 'svelte/transition';
-  import IconX from '@tabler/icons-svelte/dist/svelte/icons/IconX.svelte';
-  import IconEdit from '@tabler/icons-svelte/dist/svelte/icons/IconEdit.svelte';
+  import IconX from '@tabler/icons-svelte/IconX.svelte';
+  import IconEdit from '@tabler/icons-svelte/IconEdit.svelte';
   import { v4 as uuid } from 'uuid';
   import ColorPicker from '$components/ColorPicker.svelte';
   import { ICON_STROKE } from '$lib/constants';
@@ -109,11 +109,15 @@
 
   button.color-sample:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 0px 2px var(--bg), 0px 0px 0px 4px var(--fg);
+    box-shadow:
+      0px 0px 0px 2px var(--bg),
+      0px 0px 0px 4px var(--fg);
   }
 
   button.color-sample.editing {
-    box-shadow: 0px 0px 0px 2px var(--bg), 0px 0px 0px 4px var(--fg);
+    box-shadow:
+      0px 0px 0px 2px var(--bg),
+      0px 0px 0px 4px var(--fg);
   }
 
   .edit-label {

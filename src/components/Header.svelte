@@ -1,9 +1,13 @@
 <script lang="ts">
-  import { ICON_STROKE } from '$lib/constants';
-  import IconRefresh from '@tabler/icons-svelte/dist/svelte/icons/IconRefresh.svelte';
-  import IconUpload from '@tabler/icons-svelte/dist/svelte/icons/IconUpload.svelte';
+  import { ICON_SIZE, ICON_STROKE } from '$lib/constants';
+  import IconUpload from '@tabler/icons-svelte/IconUpload.svelte';
+  import IconArrowBackUp from '@tabler/icons-svelte/IconArrowBackUp.svelte';
+  import IconSun from '@tabler/icons-svelte/IconSun.svelte';
+  import IconMoon from '@tabler/icons-svelte/IconMoon.svelte';
   import { showExportModal } from '$stores/state';
   import Logo from './Logo.svelte';
+
+  let darkTheme = false;
 </script>
 
 <header>
@@ -13,17 +17,40 @@
   </a>
   <div class="actions">
     <button class="action" on:click={() => void location.replace('/')}>
-      <span>reset</span>
-      <IconRefresh stroke={ICON_STROKE} />
+      <IconArrowBackUp stroke={ICON_STROKE} size={ICON_SIZE} />
+      <span class="label">Reset</span>
     </button>
     <button class="action" on:click={() => void ($showExportModal = true)}>
-      <span>export</span>
-      <IconUpload stroke={ICON_STROKE} />
+      <IconUpload stroke={ICON_STROKE} size={ICON_SIZE} />
+      <span class="label">Export</span>
+    </button>
+    <div class="separator" />
+    <button class="action" on:click={() => void (darkTheme = !darkTheme)}>
+      <div class="theme-icon" class:active={!darkTheme}>
+        <IconSun stroke={ICON_STROKE} size={ICON_SIZE} />
+      </div>
+      <div class="theme-icon" class:active={darkTheme}>
+        <IconMoon stroke={ICON_STROKE} size={ICON_SIZE} />
+      </div>
     </button>
   </div>
 </header>
 
 <style>
+  .theme-icon {
+    position: absolute;
+    height: 20px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 150ms ease-in-out;
+  }
+
+  .theme-icon.active {
+    transform: translateY(0px);
+    transition: all 150ms 150ms ease-in-out;
+    opacity: 1;
+  }
+
   header {
     position: sticky;
     top: var(--base-2);
@@ -46,13 +73,16 @@
 
   .actions {
     display: flex;
+    align-items: center;
     height: 100%;
   }
 
   .action {
+    position: relative;
     display: flex;
     cursor: pointer;
     align-items: center;
+    justify-content: center;
     gap: var(--base-1);
     font-weight: 400;
     padding: 0;
@@ -60,19 +90,46 @@
     border: 0;
     height: 100%;
     color: var(--fg);
-    padding: var(--sub-base-2) var(--sub-base-3);
     text-decoration: none;
     font-size: 16px;
     border-radius: var(--sub-base-1);
     background-color: transparent;
   }
 
+  .actions .action {
+    aspect-ratio: 1;
+  }
+
   .action:hover {
     background-color: var(--component-2);
   }
 
+  .action .label {
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translate(-50%, -5px);
+    transition: all 150ms ease-in-out;
+    text-shadow: 0px 0px 2px black;
+  }
+
+  .action:hover > .label {
+    transform: translate(-50%, 0px);
+    opacity: 1;
+  }
+
   .logo {
     font-weight: 700;
+    padding: var(--sub-base-2) var(--sub-base-3);
+  }
+
+  .separator {
+    width: 1px;
+    height: 30px;
+    background-color: var(--component-3);
+    margin: 0 var(--sub-base-1);
   }
 
   @media (max-width: 1000px) {

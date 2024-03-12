@@ -23,6 +23,8 @@
   --base-2: 16px;
   --base-3: 24px;
   --base-4: 32px;
+
+  --color-mode-transition-duration: 300ms;
 }
 
 *,
@@ -44,6 +46,12 @@ body {
   flex-direction: column;
   align-items: center;
   height: 100vh;
+}
+
+.color-mode-transition * {
+  transition: color var(--color-mode-transition-duration) ease,
+    border-color var(--color-mode-transition-duration) ease,
+    background-color var(--color-mode-transition-duration) ease;
 }
 
 h1,

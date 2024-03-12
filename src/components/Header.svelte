@@ -4,10 +4,8 @@
   import IconArrowBackUp from '@tabler/icons-svelte/IconArrowBackUp.svelte';
   import IconSun from '@tabler/icons-svelte/IconSun.svelte';
   import IconMoon from '@tabler/icons-svelte/IconMoon.svelte';
-  import { showExportModal } from '$stores/state';
+  import { darkMode, showExportModal } from '$stores/state';
   import Logo from './Logo.svelte';
-
-  let darkTheme = false;
 </script>
 
 <header>
@@ -25,11 +23,11 @@
       <span class="label">Export</span>
     </button>
     <div class="separator" />
-    <button class="action" on:click={() => void (darkTheme = !darkTheme)}>
-      <div class="theme-icon" class:active={!darkTheme}>
+    <button class="action" on:click={() => void ($darkMode = !$darkMode)}>
+      <div class="theme-icon" class:active={!$darkMode}>
         <IconSun stroke={ICON_STROKE} size={ICON_SIZE} />
       </div>
-      <div class="theme-icon" class:active={darkTheme}>
+      <div class="theme-icon" class:active={$darkMode}>
         <IconMoon stroke={ICON_STROKE} size={ICON_SIZE} />
       </div>
     </button>
@@ -42,12 +40,13 @@
     height: 20px;
     opacity: 0;
     transform: translateY(10px);
-    transition: all 150ms ease-in-out;
+    transition: all calc(var(--color-mode-transition-duration) / 2) ease-in-out;
   }
 
   .theme-icon.active {
     transform: translateY(0px);
-    transition: all 150ms 150ms ease-in-out;
+    transition: all calc(var(--color-mode-transition-duration) / 2)
+      calc(var(--color-mode-transition-duration) / 2) ease-in-out;
     opacity: 1;
   }
 

@@ -6,28 +6,42 @@
   import Main from '$components/Main.svelte';
   import Footer from '$components/Footer.svelte';
   import ExportModal from '$components/ExportModal.svelte';
-  import { favicon } from '$stores/state';
+  import { darkMode, favicon } from '$stores/state';
   import { showExportModal } from '$stores/state';
   import { colors } from '$stores/colors';
   import { updateLocationHash } from '$lib/updateLocationHash';
   import { setRootCSSVariable } from '$lib/setRootCSSVariable';
   import { makeFaviconData } from '$lib/makeFaviconData';
+  import { colorMode } from '$stores/colorMode';
 
   // Update location hash to reflect current state
   updateLocationHash();
 
   colors.subscribe((colors) => {
-    const faviconData = makeFaviconData({
-      white: colors._white,
-      black: colors._black,
-    });
-
-    favicon.set(faviconData);
-
-    setRootCSSVariable('--fg', colors._white);
-    setRootCSSVariable('--bg', colors._black);
-
     updateLocationHash();
+  });
+
+  let colorModeAnimationTimeout: NodeJS.Timeout;
+
+  // Desc
+  darkMode.subscribe((isDarkMode) => {
+    clearTimeout(colorModeAnimationTimeout);
+
+    sessionStorage.setItem('darkMode', String(isDarkMode));
+
+    document.querySelector('html')?.classList.add('color-mode-transition');
+
+    colorModeAnimationTimeout = setTimeout(() => {
+      document.querySelector('html')?.classList.remove('color-mode-transition');
+    }, 500);
+  });
+
+  // Desc
+  colorMode.subscribe(({ bg, fg }) => {
+    favicon.set(makeFaviconData({ bg, fg }));
+
+    setRootCSSVariable('--fg', fg);
+    setRootCSSVariable('--bg', bg);
   });
 </script>
 

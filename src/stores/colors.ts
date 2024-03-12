@@ -16,9 +16,9 @@ const initialColors: Colors = {
   _black: hashColors.black || '#0b0921',
   primary: hashColors.primary || '#6fb2d5',
   info: hashColors.info || '#2971dc',
-  success: hashColors.success || '#47a972',
-  error: hashColors.error || '#d73951',
-  warning: hashColors.warning || '#e6b44a',
+  green: hashColors.success || '#47a972',
+  red: hashColors.error || '#d73951',
+  yellow: hashColors.warning || '#e6b44a',
 };
 
 const initialPalette = makePalette(initialColors);

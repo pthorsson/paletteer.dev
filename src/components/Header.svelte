@@ -1,9 +1,9 @@
 <script lang="ts">
   import { ICON_SIZE, ICON_STROKE } from '$lib/constants';
-  import IconUpload from '@tabler/icons-svelte/IconUpload.svelte';
-  import IconArrowBackUp from '@tabler/icons-svelte/IconArrowBackUp.svelte';
-  import IconSun from '@tabler/icons-svelte/IconSun.svelte';
-  import IconMoon from '@tabler/icons-svelte/IconMoon.svelte';
+  import IconUpload from '@tabler/icons-svelte/icons/upload';
+  import IconArrowBackUp from '@tabler/icons-svelte/icons/arrow-back-up';
+  import IconSun from '@tabler/icons-svelte/icons/sun';
+  import IconMoon from '@tabler/icons-svelte/icons/moon';
   import { darkMode, showExportModal } from '$stores/state';
   import Logo from './Logo.svelte';
 </script>
@@ -22,7 +22,7 @@
       <IconUpload stroke={ICON_STROKE} size={ICON_SIZE} />
       <span class="label">Export</span>
     </button>
-    <div class="separator" />
+    <div class="separator"></div>
     <button class="action" on:click={() => void ($darkMode = !$darkMode)}>
       <div class="theme-icon" class:active={!$darkMode}>
         <IconSun stroke={ICON_STROKE} size={ICON_SIZE} />

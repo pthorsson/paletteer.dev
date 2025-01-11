@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { fade, scale } from 'svelte/transition';
-  import IconClipboardCopy from '@tabler/icons-svelte/IconClipboardCopy.svelte';
-  import IconX from '@tabler/icons-svelte/IconX.svelte';
+  import IconClipboardCopy from '@tabler/icons-svelte/icons/clipboard-copy';
+  import IconX from '@tabler/icons-svelte/icons/x';
   import { ICON_STROKE } from '$lib/constants';
   import { palette } from '$stores/colors';
   import { showExportModal } from '$stores/state';
@@ -83,7 +83,7 @@
     class="backdrop"
     role="none"
     on:click={() => void ($showExportModal = false)}
-  />
+  ></div>
   <div class="container" transition:scale={{ start: 0.95, duration: 150 }}>
     <button
       class="action close"
@@ -111,7 +111,7 @@
       "
     >
       <pre bind:this={highlightedRef}>{@html highlighted}</pre>
-      <textarea value={code} readonly />
+      <textarea value={code} readonly></textarea>
     </div>
     <button class="action copy" on:click={() => void copyToClipboard()}>
       Copy

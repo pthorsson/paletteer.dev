@@ -1,8 +1,8 @@
 <script lang="ts">
   import { afterUpdate } from 'svelte';
   import { fly } from 'svelte/transition';
-  import IconX from '@tabler/icons-svelte/IconX.svelte';
-  import IconEdit from '@tabler/icons-svelte/IconEdit.svelte';
+  import IconEdit from '@tabler/icons-svelte/icons/edit';
+  import IconX from '@tabler/icons-svelte/icons/x';
   import { v4 as uuid } from 'uuid';
   import ColorPicker from '$components/ColorPicker.svelte';
   import { ICON_STROKE } from '$lib/constants';
@@ -64,7 +64,7 @@
       {/if}
     </button>
   {:else}
-    <div class="color-sample" />
+    <div class="color-sample"></div>
   {/if}
   <div class="info">
     <span class="tone">{toneLabel}</span>

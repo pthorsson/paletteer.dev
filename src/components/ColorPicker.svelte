@@ -125,9 +125,9 @@
   on:touchstart={() => (initiated = true)}
 >
   <div class="hue" {id} bind:this={hueBoard}>
-    <div class="whiteness" />
-    <div class="blackness" />
-    <div class="aim" />
+    <div class="whiteness"></div>
+    <div class="blackness"></div>
+    <div class="aim"></div>
   </div>
   <div class="slider">
     <Slider

@@ -32,9 +32,9 @@
     }}
   />
   <div class="bar">
-    <div class="fill" />
+    <div class="fill"></div>
   </div>
-  <div class="thumb" />
+  <div class="thumb"></div>
 </div>
 
 <style>

@@ -10,15 +10,14 @@ The project is built using [Svelte](https://svelte.dev/) in [TypeScript](https:/
 
 Prerequisites
 
-- [Node.js](https://nodejs.org/en) == 18
-- [Yarn](https://yarnpkg.com/) >= 3
+- [Node.js](https://nodejs.org/en) == 22
 
-Install dependencies, run `yarn` in project root.
+Install dependencies, run `npm install` in project root.
 
 ### Build project
 
-To build a dist of the project, run `yarn build` in the project root. That will output a built version into `dist/`, which can then be served by a webserver.
+To build a dist of the project, run `npm run build` in the project root. That will output a built version into `dist/`, which can then be served by a webserver.
 
 ### Local development
 
-To start a local dev server, run `yarn dev` in the project root. This will launch a [Vite](https://vitejs.dev/) dev server.
+To start a local dev server, run `npm run dev` in the project root. This will launch a [Vite](https://vitejs.dev/) dev server.

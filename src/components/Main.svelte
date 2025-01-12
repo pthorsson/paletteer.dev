@@ -8,20 +8,22 @@
 </script>
 
 <main>
-  <section>
-    <h2>Key colors</h2>
+  <div class="intro">
+    <h2>Paletteer color mixer</h2>
     <p>
-      These colors will be representing the key colors white and black, as well
-      as mix of shades in between.
+      This tools lets you create a color palette by selecting two key colors (a
+      white and a black), and then a basic spectrum of colors. Each color has
+      shades that are derived from the key colors.
     </p>
+  </div>
+  <div class="colors">
+    <div class="color-range-name">Key</div>
     <KeyColorRange />
-  </section>
-  {#each colorIds as id}
-    <section>
-      <h2>{capitalize(id)}</h2>
+    {#each colorIds as id}
+      <div class="color-range-name">{capitalize(id)}</div>
       <FunctionColorRange {id} />
-    </section>
-  {/each}
+    {/each}
+  </div>
 </main>
 
 <style>
@@ -31,18 +33,35 @@
     flex: 1 1 auto;
     align-items: center;
     padding: var(--base-4) var(--base-2);
-    gap: var(--base-2);
+    gap: var(--base-4);
     max-width: var(--max-width);
     width: 100%;
+  }
+
+  .intro {
+    padding-bottom: var(--base-2);
+    border-bottom: 1px solid var(--component-2);
+  }
+
+  .colors {
+    display: grid;
+    gap: var(--base-2);
+    grid-template-columns: 80px 1fr;
+    width: 100%;
+  }
+
+  .color-range-name {
+    padding-top: var(--sub-base-1);
   }
 
   @media (max-width: 1000px) {
     main {
       padding: var(--base-2) var(--base-2);
     }
-  }
 
-  section {
-    width: 100%;
+    .colors {
+      grid-template-columns: 1fr;
+      gap: var(--base-1);
+    }
   }
 </style>

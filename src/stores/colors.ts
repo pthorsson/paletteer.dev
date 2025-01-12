@@ -14,11 +14,13 @@ const hashColors = parseLocationHash(location.hash);
 const initialColors: Colors = {
   _white: hashColors.white || '#ececff',
   _black: hashColors.black || '#0b0921',
-  primary: hashColors.primary || '#6fb2d5',
-  info: hashColors.info || '#2971dc',
-  green: hashColors.success || '#47a972',
-  red: hashColors.error || '#d73951',
-  yellow: hashColors.warning || '#e6b44a',
+  red: hashColors.red || '#d73951',
+  orange: hashColors.orange || '#d67738',
+  yellow: hashColors.yellow || '#e6b44a',
+  green: hashColors.green || '#47a972',
+  cyan: hashColors.cyan || '#29bedb',
+  blue: hashColors.blue || '#2971dc',
+  purple: hashColors.purple || '#8e29db',
 };
 
 const initialPalette = makePalette(initialColors);

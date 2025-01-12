@@ -101,10 +101,10 @@
     width: 100%;
     background-color: var(--color);
     border: 1px solid color-mix(in srgb, var(--color), var(--fg) 20%);
-    border-radius: var(--base-1);
+    border-radius: var(--sub-base-1);
     transition: box-shadow 150ms;
     color: var(--color-fg);
-    min-height: 70px;
+    min-height: 34px;
   }
 
   button.color-sample:hover {

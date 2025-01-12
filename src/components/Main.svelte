@@ -61,7 +61,7 @@
 
     .colors {
       grid-template-columns: 1fr;
-      gap: var(--base-1);
+      gap: var(--sub-base-1);
     }
   }
 </style>

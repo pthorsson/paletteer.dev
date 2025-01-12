@@ -104,7 +104,7 @@
     border-radius: var(--sub-base-1);
     transition: box-shadow 150ms;
     color: var(--color-fg);
-    min-height: 34px;
+    min-height: 40px;
   }
 
   button.color-sample:hover {
@@ -139,7 +139,7 @@
     font-size: 14px;
     color: var(--fg);
     line-height: 1;
-    height: var(--base-4);
+    gap: var(--sub-base-1);
     margin-top: var(--base-1);
   }
 
@@ -211,5 +211,11 @@
 
   .color-picker.right::before {
     right: 27px;
+  }
+
+  @media (max-width: 1000px) {
+    .tone {
+      display: none;
+    }
   }
 </style>
